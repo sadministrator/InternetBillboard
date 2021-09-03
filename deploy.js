@@ -4,9 +4,11 @@ const { interface, bytecode } = require('./compile');
 require('dotenv').config();
 
 const mnemonic = process.env.MNEMONIC;
+const infura_endpoint = process.env.INFURA_ENDPOINT;
+
 const provider = new HDWalletProvider(
     mnemonic,
-    'https://rinkeby.infura.io/v3/0771c92c5c6c42669665a80daa68b848'
+    infura_endpoint
 );
 
 const web3 = new Web3(provider);
