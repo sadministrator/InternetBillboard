@@ -1,10 +1,10 @@
 pragma solidity ^0.4.17;
 
-contract Inbox {
+contract InternetBillboard {
     string public message;
     string public image;
 
-    function Inbox(string initialMessage, initialImage) public {
+    function InternetBillboard(string initialMessage, string initialImage) public {
         message = initialMessage;
         image = initialImage;
     }
