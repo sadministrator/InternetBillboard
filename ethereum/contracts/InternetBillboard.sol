@@ -16,20 +16,30 @@ contract InternetBillboard {
         message = initialMessage;
         image = initialImage;
         creator = msg.sender;
+
+        Billboard memory billboard = Billboard({
+            message: initialMessage,
+            image: initialImage,
+            creator: msg.sender
+        });
+        history.push(billboard);
     }
 
     function setBillboard(string newMessage, string newImage) public {
         message = newMessage;
         image = newImage;
         creator = msg.sender;
+
+        Billboard memory billboard = Billboard({
+            message: newMessage,
+            image: newImage,
+            creator: msg.sender
+        });
+        history.push(billboard);
     }
 
     function getBillboard() public view returns(string, string, address) {
         return (message, image, creator);
-    }
-
-    function getBillboard(uint index) public view returns(Billboard) {
-        return history[index];
     }
 
     function getHistoryLength() public view returns(uint) {

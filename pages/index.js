@@ -2,18 +2,39 @@ import React, { Component } from 'react';
 import billboard from '../ethereum/billboard';
 
 class InternetBillboard extends Component {
-    static async getInitialProps(ctx) {
-        const message = await billboard.methods.message().call();
-        const image = await billboard.methods.image().call();
+    state = {
+        message: '',
+        image: '',
+        creator: ''
+    };
 
-        return { message, image };
+    static async getInitialProps(ctx) {
+        const historyLength = await billboard.methods.getHistoryLength().call();
+
+        const history = await Promise.all(
+            Array(parseInt(historyLength)).fill().map((element, index) => {
+                console.log('index: ', typeof (index));
+                return billboard.methods.history(index).call();
+            })
+        );
+        return { history };
+    }
+
+    constructor(props) {
+        super(props);
+        const { message, image, creator } = this.props.history[0];
+        this.state = {
+            message,
+            image,
+            creator
+        };
     }
 
     render() {
         return (
             <div>
-                <p>{this.props.message}</p>
-                <img src={this.props.image} />
+                <p>{this.state.message}</p>
+                <img src={this.state.image} />
             </div>
         );
     }
