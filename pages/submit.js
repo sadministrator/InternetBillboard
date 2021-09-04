@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 import billboard from '../ethereum/billboard';
 import web3 from '../ethereum/web3';
@@ -51,55 +52,63 @@ function Submit() {
   };
 
   return (
-    <form
-      onSubmit={submitBillboard}
-      className={styles.form}
-    >
-      <label
-        htmlFor="message"
-        className={styles.label}
+    <div>
+      <Link href="/">
+        Back to Homepage
+      </Link>
+      <form
+        onSubmit={submitBillboard}
+        className={styles.form}
       >
-        Message
+        <label
+          htmlFor="message"
+          className={styles.label}
+        >
+          Message
+          <br />
+          <textarea
+            className={styles.input}
+            rows="4"
+            id="message"
+            value={message}
+            onChange={handleMessageChange}
+          />
+        </label>
         <br />
-        <input
-          id="message"
-          value={message}
-          onChange={handleMessageChange}
-        />
-      </label>
-      <br />
-      <br />
-
-      <label
-        htmlFor="image"
-        className={styles.label}
-      >
-        Image URL
         <br />
-        <input
-          id="image"
-          value={image}
-          onChange={handleImageChange}
-        />
-      </label>
 
-      <br />
+        <label
+          htmlFor="image"
+          className={styles.label}
+        >
+          Image URL
+          <br />
+          <input
+            className={styles.input}
+            id="image"
+            value={image}
+            onChange={handleImageChange}
+          />
+        </label>
 
-      <button
-        type="submit"
-        className={styles.button}
-      >
-        <div className={loading ? styles.loader : ''} />
-        Submit
-      </button>
+        <br />
 
-      <div
-        hidden={!error}
-        className={styles.error}
-      >
-        {error}
-      </div>
-    </form>
+        <button
+          type="submit"
+          className={styles.button}
+        >
+          <div className={loading ? styles.loader : ''} />
+          Submit
+        </button>
+
+        <div
+          hidden={!error}
+          className={styles.error}
+        >
+          {error}
+        </div>
+      </form>
+    </div>
   );
 }
 
