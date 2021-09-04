@@ -3,7 +3,7 @@ import compiledBillboard from './build/InternetBillboard.json';
 
 const billboard = new web3.eth.Contract(
     JSON.parse(compiledBillboard.interface),
-    process.env.BILLBOARD_ADDRESS
+    process.env.NEXT_PUBLIC_BILLBOARD_ADDRESS
 );
 
 export default billboard;

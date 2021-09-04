@@ -1,0 +1,34 @@
+.form {
+    text-align: center;
+    margin-top: 16px;
+}
+
+.button {
+    margin: 12px;
+}
+
+.loader {
+    float: left;
+    margin-right: 8px;
+    border: 2px solid #f3f3f3; /* Light grey */
+    border-top: 2px solid #3498db; /* Blue */
+    border-radius: 50%;
+    width: 12px;
+    height: 12px;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.error {
+    max-width: 30%;
+    margin: auto;
+    border-style: solid;
+    border-color: red;
+    border-width: 1px;
+    border-radius: 5px;
+    background-color: #f9c9c9;
+}
