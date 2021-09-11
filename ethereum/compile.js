@@ -7,10 +7,26 @@ fs.removeSync(buildPath);
 
 const sourcePath = path.resolve(__dirname, 'contracts', 'InternetBillboard.sol');
 const source = fs.readFileSync(sourcePath, 'utf8');
-const output = solc.compile(source, 1).contracts;
+
+const input = {
+  language: 'Solidity',
+  sources: {
+    'InternetBillboard.sol': {
+      content: source,
+    },
+  },
+  settings: {
+    outputSelection: {
+      '*': {
+        '*': ['*'],
+      },
+    },
+  },
+};
+const output = JSON.parse(solc.compile(JSON.stringify(input)));
 
 fs.ensureDirSync(buildPath);
 fs.outputJsonSync(
-    path.resolve(buildPath, 'InternetBillboard.json'),
-    output[':InternetBillboard']
+  path.resolve(buildPath, 'InternetBillboard.json'),
+  output.contracts['InternetBillboard.sol'].InternetBillboard,
 );

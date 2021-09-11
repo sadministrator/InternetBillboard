@@ -16,8 +16,11 @@ beforeEach(async () => {
     newMessage = 'Goodbye world!';
 
     // Use one of those accounts to deploy the contract
-    inbox = await new web3.eth.Contract(JSON.parse(compiledBillboard.interface))
-        .deploy({ data: compiledBillboard.bytecode, arguments: [defaultMessage] })
+    inbox = await new web3.eth.Contract(compiledBillboard.abi))
+        .deploy({
+            data: compiledBillboard.evm.bytecode.object,
+            arguments: [defaultMessage]
+        })
         .send({ from: accounts[0], gas: '1000000' });
 });
 

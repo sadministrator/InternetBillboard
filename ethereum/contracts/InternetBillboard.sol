@@ -1,4 +1,5 @@
-pragma solidity ^0.4.17;
+// SPDX-License-Identifier: GPL-3.0
+pragma solidity ^0.8.7;
 
 contract InternetBillboard {
     struct Billboard {
@@ -11,8 +12,10 @@ contract InternetBillboard {
     string public image;
     address public creator;
     Billboard[] public history;
+    
+    event NewBillboard(string message, string image, address creator);
 
-    function InternetBillboard(string initialMessage, string initialImage) public {
+    constructor(string memory initialMessage, string memory initialImage) {
         message = initialMessage;
         image = initialImage;
         creator = msg.sender;
@@ -23,9 +26,10 @@ contract InternetBillboard {
             creator: msg.sender
         });
         history.push(billboard);
+        emit NewBillboard(initialMessage, initialImage, msg.sender);
     }
 
-    function setBillboard(string newMessage, string newImage) public {
+    function setBillboard(string calldata newMessage, string calldata newImage) external {
         message = newMessage;
         image = newImage;
         creator = msg.sender;
@@ -36,13 +40,14 @@ contract InternetBillboard {
             creator: msg.sender
         });
         history.push(billboard);
+        emit NewBillboard(newMessage, newImage, msg.sender);
     }
 
-    function getBillboard() public view returns(string, string, address) {
+    function getBillboard() external view returns(string memory, string memory, address) {
         return (message, image, creator);
     }
 
-    function getHistoryLength() public view returns(uint) {
+    function getHistoryLength() external view returns(uint) {
         return history.length;
     }
 }
