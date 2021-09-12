@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import billboard from '../ethereum/billboard';
 import Header from '../components/Header';
+import Image from 'next/image';
 
 class InternetBillboard extends Component {
     state = {
@@ -55,8 +56,9 @@ class InternetBillboard extends Component {
                 historyLength={this.props.historyLength}
             >
                 <p>{history[index].message}</p>
-                <img
+                <Image
                     src={history[index].image}
+                    alt={history[index].message}
                     style={{
                         minWidth: '30%',
                         maxWidth: '90%'

@@ -27,7 +27,7 @@ function Header(props) {
       {children}
       <br />
 
-      <Link href="/submit">
+      <Link href="/submit" passHref>
         <button type="button">
           Submit New Billboard
         </button>
