@@ -1,4 +1,4 @@
-# InternetBillboard
+# InternetBillboard: https://internet-billboard.vercel.app/
 A dApp that displays a 'billboard', a message and image saved in a smart contract, and allows users to send transactions that can update it. A simple experimental dApp made in the spirit of decentralization and public access.
 
 # Exploring Previous Billboards
